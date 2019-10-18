@@ -6,24 +6,24 @@ steps:
     env: ["NODE_ENV=development"]
     id: "installjs"
 
-  - name: gcr.io/cloud-builders/gcloud
-    args:
-      - "-c"
-      - |
-        sed -i 's/%URL%/$BRANCH_NAME/g' app.yaml
-    entrypoint: bash
-    id: "edityaml"
-    wait_for: ["installjs"]
+  # - name: gcr.io/cloud-builders/gcloud
+  #   args:
+  #     - "-c"
+  #     - |
+  #       sed -i 's/%URL%/$BRANCH_NAME/g' app.yaml
+  #   entrypoint: bash
+  #   id: "edityaml"
+  #   wait_for: ["installjs"]
 
-  - name: gcr.io/cloud-builders/gcloud
-    args:
-      - "-c"
-      - |
-        version=$BRANCH_NAME
-        gcloud beta app deploy app.yaml --version=${version,,} --no-promote
-    entrypoint: bash
-    id: "deploy"
-    wait_for: ["edityaml"]
+  # - name: gcr.io/cloud-builders/gcloud
+  #   args:
+  #     - "-c"
+  #     - |
+  #       version=$BRANCH_NAME
+  #       gcloud beta app deploy app.yaml --version=${version,,} --no-promote
+  #   entrypoint: bash
+  #   id: "deploy"
+  #   wait_for: ["edityaml"]
 
   - name: gcr.io/cloud-builders/docker
     args:
