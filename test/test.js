@@ -6,8 +6,6 @@ fixture`Getting Started`.page`https://google.nl`; // declare the fixture // spec
 test("My first test", async t => {
   await t
     // Use the assertion to check if the actual header text is equal to the expected one
-    .expect(
-      Selector("input").withAttribute("aria-label", "Google zoeken").exists
-    )
+    .expect(Selector("img").withAttribute("alt", "Google").exists)
     .ok();
 });
