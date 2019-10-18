@@ -25,4 +25,10 @@ steps:
     id: "deploy"
     wait_for: ["edityaml"]
 
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["test"]
+    env: ["NODE_ENV=development"]
+    id: "test"
+    wait_for: ["deploy"]
+
 timeout: 1800s
