@@ -36,7 +36,7 @@ steps:
     # wait_for: ["deploy"]
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "eu.gcr.io/davjeugd/testcafe:latest"]
-  - name: "docker/compose:1.15.0"
+  - name: "docker/compose:1.24.1"
     args: ["up", "-d"]
     env:
       - "PROJECT_ID=$PROJECT_ID"
