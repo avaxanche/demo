@@ -23,7 +23,7 @@ const app = express();
 app.get("/", (req, res) => {
   res
     .status(200)
-    .send(`Hello, world! dit is mijn url ${process.env._URL}`)
+    .send(`Hello, world! dit is mijn url ${process.env.URL}`)
     .end();
 });
 
