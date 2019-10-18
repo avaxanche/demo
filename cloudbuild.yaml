@@ -25,10 +25,32 @@ steps:
     id: "deploy"
     wait_for: ["edityaml"]
 
-  - name: "gcr.io/cloud-builders/npm"
-    args: ["test"]
-    env: ["NODE_ENV=development"]
-    id: "test"
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - "build"
+      - "--tag=eu.gcr.io/$PROJECT_ID/testcafe:latest"
+      - "--file=dockerfile"
+      - "."
+    id: "testcafedocker"
     wait_for: ["deploy"]
+
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/$PROJECT_ID/testcafe:latest"]
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "beta",
+        "run",
+        "deploy",
+        "testcafe:latest",
+        "--image",
+        "gcr.io/$PROJECT_ID/testcafe:latest",
+        "--platform",
+        "managed",
+        "--quiet",
+      ]
+    images:
+      - gcr.io/$PROJECT_ID/[SERVICE-NAME]
 
 timeout: 1800s
