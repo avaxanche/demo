@@ -12,6 +12,7 @@ steps:
       - "app"
       - "deploy"
       - "app.yaml"
+      - "--version=test"
     id: "deploy"
     wait_for: ["installjs"]
 
