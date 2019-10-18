@@ -7,13 +7,13 @@ steps:
     id: "installjs"
 
   - name: gcr.io/cloud-builders/gcloud
-      args:
-        - "-c"
-        - |
-        sed -i 's/${_URL}/$BRANCH_NAME/g' metamorphosis.txt
-      entrypoint: bash
-      id: "edityaml"
-      wait_for: ["installjs"]
+    args:
+      - "-c"
+      - |
+      sed -i 's/%URL%/$BRANCH_NAME/g' metamorphosis.txt
+    entrypoint: bash
+    id: "edityaml"
+    wait_for: ["installjs"]
 
   - name: gcr.io/cloud-builders/gcloud
     args:
