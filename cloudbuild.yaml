@@ -26,6 +26,8 @@ steps:
   #   wait_for: ["edityaml"]
 
   - name: "gcr.io/cloud-builders/docker"
+    args: ["-c", "docker pull eu.gcr.io/$PROJECT_ID/testcafe:latest || exit 0"]
+  - name: "gcr.io/cloud-builders/docker"
     args:
       [
         "-c",
