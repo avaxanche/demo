@@ -33,11 +33,6 @@ steps:
       - "."
     id: "testcafedocker"
 
-    # wait_for: ["deploy"]
-  - name: "eu.gcr.io/$PROJECT_ID/testcafe:latest"
-    args: ["up", "-d"]
-    env:
-      - "PROJECT_ID=$PROJECT_ID"
   - name: "gcr.io/cloud-builders/npm"
     args: ["test"]
 
