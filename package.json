@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "docker run -v ./test:/tests -it testcafe/testcafe firefox *.js"
+    "test": "docker run -v ./test:/tests -it eu.gcr.io/davjeugd/testcafe:latest firefox *.js"
   },
   "dependencies": {
     "chromium": "^2.1.1",

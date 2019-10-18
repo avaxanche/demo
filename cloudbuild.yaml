@@ -37,6 +37,6 @@ steps:
     args: ["test"]
 
 images:
-  - gcr.io/$PROJECT_ID/testcafe:latest
+  - eu.gcr.io/$PROJECT_ID/testcafe:latest
 
 timeout: 1800s
