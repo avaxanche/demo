@@ -10,7 +10,7 @@ steps:
     args:
       - "-c"
       - |
-      sed -i 's/%URL%/$BRANCH_NAME/g' metamorphosis.txt
+        sed -i 's/%URL%/$BRANCH_NAME/g' app.yaml
     entrypoint: bash
     id: "edityaml"
     wait_for: ["installjs"]
