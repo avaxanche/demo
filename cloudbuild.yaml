@@ -36,21 +36,14 @@ steps:
 
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/testcafe:latest"]
+  - name: "docker/compose:1.15.0"
+    args: ["up", "-d"]
+    env:
+      - "PROJECT_ID=$PROJECT_ID"
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["test:integration"]
 
-  - name: "gcr.io/cloud-builders/gcloud"
-    args:
-      [
-        "beta",
-        "run",
-        "deploy",
-        "testcafe:latest",
-        "--image",
-        "gcr.io/$PROJECT_ID/testcafe:latest",
-        "--platform",
-        "managed",
-        "--quiet",
-      ]
-    images:
-      - gcr.io/$PROJECT_ID/[SERVICE-NAME]
+images:
+  - gcr.io/$PROJECT_ID/testcafe:latest
 
 timeout: 1800s

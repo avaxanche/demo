@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "testcafe 'chrome:./node_modules/chromium/lib/chromium/chrome-linux/chrome:headless' test/test.js"
+    "test": "docker run -v ./test:/tests -it testcafe/testcafe firefox *.js"
   },
   "dependencies": {
     "chromium": "^2.1.1",
