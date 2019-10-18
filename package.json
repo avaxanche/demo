@@ -14,11 +14,11 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "docker run -v ./test:/tests -it eu.gcr.io/davjeugd/testcafe:latest firefox *.js"
+    "test": "testcafe 'chrome:./node_modules/chromium/lib/chromium/chrome-linux/chrome:headless' test/test.js"
   },
   "dependencies": {
-    "chromium": "^2.1.1",
     "express": "^4.16.3",
+    "moment": "^2.24.0",
     "testcafe": "^1.6.0"
   },
   "devDependencies": {

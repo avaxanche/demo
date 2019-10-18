@@ -1,43 +1,37 @@
 steps:
-  #Install, compile & copy shared-types
+  Install, compile & copy shared-types
 
-  # - name: "gcr.io/cloud-builders/npm"
-  #   args: ["install"]
-  #   env: ["NODE_ENV=development"]
-  #   id: "installjs"
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["install"]
+    env: ["NODE_ENV=development"]
+    id: "installjs"
 
-  # - name: gcr.io/cloud-builders/gcloud
-  #   args:
-  #     - "-c"
-  #     - |
-  #       sed -i 's/%URL%/$BRANCH_NAME/g' app.yaml
-  #   entrypoint: bash
-  #   id: "edityaml"
-  #   wait_for: ["installjs"]
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - "-c"
+      - |
+        sed -i 's/%URL%/$BRANCH_NAME/g' app.yaml
+    entrypoint: bash
+    id: "edityaml"
+    wait_for: ["installjs"]
 
-  # - name: gcr.io/cloud-builders/gcloud
-  #   args:
-  #     - "-c"
-  #     - |
-  #       version=$BRANCH_NAME
-  #       gcloud beta app deploy app.yaml --version=${version,,} --no-promote
-  #   entrypoint: bash
-  #   id: "deploy"
-  #   wait_for: ["edityaml"]
-
-  # - name: "gcr.io/cloud-builders/docker"
-  #   entrypoint: bash
-  #   args: ["-c", "docker pull eu.gcr.io/$PROJECT_ID/testcafe:latest || exit 0"]
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - "-c"
+      - |
+        version=$BRANCH_NAME
+        gcloud beta app deploy app.yaml --version=${version,,} --no-promote
+    entrypoint: bash
+    id: "deploy"
+    wait_for: ["edityaml"]
+  
   - name: "gcr.io/cloud-builders/docker"
     dir: ""
     entrypoint: bash
     args:
       [
         "-c",
-        "docker run -v /workspace/test:/test eu.gcr.io/davjeugd/testcafe:latest firefox /test/*.js",
+        "docker run -v /workspace:/workspace eu.gcr.io/davjeugd/testcafe:latest firefox /workspace/test/*.js",
       ]
-
-images:
-  - eu.gcr.io/$PROJECT_ID/testcafe:latest
 
 timeout: 1800s
