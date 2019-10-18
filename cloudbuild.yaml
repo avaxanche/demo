@@ -10,8 +10,7 @@ steps:
     args:
       - "-c"
       - |
-        version=$BRANCH_NAME
-        gcloud beta app deploy app.yaml --version=${version,,//./-} --no-promote
+        gcloud beta app deploy app.yaml --version=${$BRANCH_NAME,,} --no-promote
     entrypoint: bash
     id: "deploy"
     wait_for: ["installjs"]
