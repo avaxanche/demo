@@ -1,6 +1,4 @@
 steps:
-  Install, compile & copy shared-types
-
   - name: "gcr.io/cloud-builders/npm"
     args: ["install"]
     env: ["NODE_ENV=development"]
@@ -24,7 +22,7 @@ steps:
     entrypoint: bash
     id: "deploy"
     wait_for: ["edityaml"]
-  
+
   - name: "gcr.io/cloud-builders/docker"
     dir: ""
     entrypoint: bash
