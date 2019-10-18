@@ -12,7 +12,7 @@ steps:
       - "app"
       - "deploy"
       - "app.yaml"
-      - "--version=test"
+      - "--version=$BRANCH_NAME"
       - "--no-promote"
     env: ["URL=https://google.nl"]
     id: "deploy"
