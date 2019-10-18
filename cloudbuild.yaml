@@ -41,7 +41,7 @@ steps:
     env:
       - "PROJECT_ID=$PROJECT_ID"
   - name: "gcr.io/cloud-builders/npm"
-    args: ["test:integration"]
+    args: ["test"]
 
 images:
   - gcr.io/$PROJECT_ID/testcafe:latest
