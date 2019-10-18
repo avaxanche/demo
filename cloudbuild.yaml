@@ -1,0 +1,18 @@
+steps:
+  #Install, compile & copy shared-types
+
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["install"]
+    env: ["NODE_ENV=development"]
+    id: "installjs"
+
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - "beta"
+      - "app"
+      - "deploy"
+      - "app.yaml"
+    id: "deploy"
+    wait_for: ["installjs"]
+
+timeout: 1800s
