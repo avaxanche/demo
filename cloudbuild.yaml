@@ -13,8 +13,8 @@ steps:
       - "deploy"
       - "app.yaml"
       - "--version=test"
-      '--no-promote'
-    env: ['URL=https://google.nl']
+      - "--no-promote"
+    env: ["URL=https://google.nl"]
     id: "deploy"
     wait_for: ["installjs"]
 
