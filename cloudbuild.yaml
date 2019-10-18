@@ -25,15 +25,15 @@ steps:
   #   id: "deploy"
   #   wait_for: ["edityaml"]
 
-  - name: "gcr.io/cloud-builders/docker"
-    entrypoint: bash
-    args: ["-c", "docker pull eu.gcr.io/$PROJECT_ID/testcafe:latest || exit 0"]
+  # - name: "gcr.io/cloud-builders/docker"
+  #   entrypoint: bash
+  #   args: ["-c", "docker pull eu.gcr.io/$PROJECT_ID/testcafe:latest || exit 0"]
   - name: "gcr.io/cloud-builders/docker"
     entrypoint: bash
     args:
       [
         "-c",
-        "docker run -v /test:/tests eu.gcr.io/davjeugd/testcafe:latest firefox /tests/*.js",
+        "docker run -v /test:/tests eu.gcr.io/davjeugd/testcafe:latest firefox tests/*.js",
       ]
 
 images:
