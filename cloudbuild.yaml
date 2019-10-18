@@ -7,6 +7,15 @@ steps:
     id: "installjs"
 
   - name: gcr.io/cloud-builders/gcloud
+      args:
+        - "-c"
+        - |
+        sed -i 's/${_URL}/$BRANCH_NAME/g' metamorphosis.txt
+      entrypoint: bash
+      id: "edityaml"
+      wait_for: ["installjs"]
+
+  - name: gcr.io/cloud-builders/gcloud
     args:
       - "-c"
       - |
@@ -14,6 +23,6 @@ steps:
         gcloud beta app deploy app.yaml --version=${version,,} --no-promote
     entrypoint: bash
     id: "deploy"
-    wait_for: ["installjs"]
+    wait_for: ["edityaml"]
 
 timeout: 1800s
