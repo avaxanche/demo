@@ -32,8 +32,8 @@ steps:
       - "--file=dockerfile"
       - "."
     id: "testcafedocker"
-    wait_for: ["deploy"]
 
+    # wait_for: ["deploy"]
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "eu.gcr.io/davjeugd/testcafe:latest"]
   - name: "docker/compose:1.15.0"
