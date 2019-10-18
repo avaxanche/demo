@@ -14,9 +14,10 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "testcafe firefox test/test.js"
+    "test": "testcafe 'chrome:./node_modules/chromium/lib/chromium/chrome-linux/chrome:headless' test/test.js"
   },
   "dependencies": {
+    "chromium": "^2.1.1",
     "express": "^4.16.3",
     "testcafe": "^1.6.0"
   },
