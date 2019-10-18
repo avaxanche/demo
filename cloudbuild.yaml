@@ -34,7 +34,7 @@ steps:
     args:
       [
         "-c",
-        "docker run -v /:/test eu.gcr.io/davjeugd/testcafe:latest firefox test/test/*.js",
+        "docker run -v $PWD/test:/test eu.gcr.io/davjeugd/testcafe:latest firefox /test/*.js",
       ]
 
 images:
