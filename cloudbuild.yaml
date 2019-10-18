@@ -29,6 +29,7 @@ steps:
   #   entrypoint: bash
   #   args: ["-c", "docker pull eu.gcr.io/$PROJECT_ID/testcafe:latest || exit 0"]
   - name: "gcr.io/cloud-builders/docker"
+    dir: ""
     entrypoint: bash
     args:
       [
